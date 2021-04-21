@@ -1,7 +1,7 @@
 import React, { Component, Fragment , useState, useEffect} from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import EditIcon from '@material-ui/icons/Edit';
-
+import {EditOutlined} from '@ant-design/icons';
 const Display = ()=> {
     const [data,setData]=useState([]) ;
     useEffect(()=>{ 
@@ -23,10 +23,11 @@ const Display = ()=> {
    return(
 
  <Fragment>
- <h2> Students Details </h2>
-
+<div className="display">
+<h2> Students Details </h2>
 
 {
+ 
                 data.map((value)=>{
                     return (
                         <Fragment>
@@ -57,9 +58,8 @@ const Display = ()=> {
                                        Roll: value.Roll,
                                        Address: value.Address,
                                        Key: value._id }]
-                                   }}>   <EditIcon className="btn">
-                           
-                       </EditIcon> </Link>
+                                   }}>
+                             <EditOutlined  className="btn" /></Link>
                        </div>
                        </div> 
                        </Fragment>
@@ -67,7 +67,7 @@ const Display = ()=> {
                 })
            }
 
-
+</div>
 
 </Fragment>
                         
