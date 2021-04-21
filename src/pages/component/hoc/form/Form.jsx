@@ -1,5 +1,7 @@
 import React,{Fragment, useState, useEffect} from 'react'
 import useHistory from 'react-router-dom';
+import { Button, Radio } from 'antd';
+
 
 
 const Form = () => {
@@ -104,7 +106,8 @@ const Form = () => {
                 <button type="submit" >Registration</button>
                 </div>
             </form>
- 
+           
+            
         </Fragment>
     )   
 }
