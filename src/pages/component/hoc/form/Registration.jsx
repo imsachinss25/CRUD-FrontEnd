@@ -1,11 +1,32 @@
 import React,{Fragment, useState, useEffect} from 'react'
 import useHistory from 'react-router-dom';
-import { Button, Radio } from 'antd';
+
+import { Form, Input, Button, Radio } from 'antd';
 
 
 
-const Form = () => {
-   
+const Registration = () => {
+
+    
+        const [form] = Form.useForm();
+        const formLayout = 'horizontal';
+      
+    
+        const layout = {
+            labelCol: {
+              span: 2,
+            },
+            wrapperCol: {
+              span: 10,
+            },
+          };
+          const tailLayout = {
+            wrapperCol: {
+              offset: 2,
+              span: 16,
+            },
+          };
+        
 
     const [userRegistration, setUserRegistration] = useState({
         firstname: "",
@@ -24,7 +45,7 @@ const Form = () => {
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        
         const res= await fetch("http://localhost:8000/students",{
             method: "POST",
             headers: {
@@ -63,53 +84,51 @@ const Form = () => {
     return (
         <Fragment>
          <h2> Registration Form </h2>
-            <form method ="POST" onSubmit={handleSubmit}>
-                <div className="field">
-                    <label htmlFor="firstname">Firstname</label>
-                    <input type="text" autoComplete="off" 
+            
+          
+            <Form  form={form} method ="POST" onFinish={handleSubmit} {...layout} >
+        <Form.Item label="Registration Form" name="layout" {...layout}>
+          
+        </Form.Item>
+        <Form.Item label="First Name">
+          <Input placeholder="First Name" autoComplete="off" 
                       value={userRegistration.firstname}  
                       onChange={handleInput}
                      name="firstname" id="firstname"/>
-                </div>
-
-                <div className="field">
-                    <label htmlFor="lastname">Lastname</label>
-                    <input type="text" autoComplete="off" 
+        </Form.Item>
+        <Form.Item label="Last Name">
+          <Input placeholder="Last Name" autoComplete="off" 
                       value={userRegistration.lastname}  
                       onChange={handleInput}
                      name="lastname" id="lastname"/>
-                </div>
-
-                <div className="field">
-                    <label htmlFor="phone">Phone</label>
-                    <input type="number" autoComplete="off" 
+        </Form.Item>
+        <Form.Item label="Phone">
+          <Input placeholder="Phone" type="number" autoComplete="off" 
                       value={userRegistration.phone}  
                       onChange={handleInput}
                      name="phone" id="phone"/>
-                </div>
-
-                <div className="field">
-                    <label htmlFor="roll">Roll no.</label>
-                    <input type="number" autoComplete="off" 
+        </Form.Item>
+        <Form.Item label="Roll">
+          <Input placeholder="Roll" type="number" autoComplete="off" 
                       value={userRegistration.roll}  
                       onChange={handleInput}
                      name="roll" id="roll"/>
-                </div>
-                <div className="field">
-                    <label htmlFor="address">Address</label>
-                    <input type="text" autoComplete="off" 
+        </Form.Item>
+        <Form.Item label="Address">
+          <Input placeholder="Address" ype="text" autoComplete="off" 
                       value={userRegistration.address}  
                       onChange={handleInput}
                      name="address" id="address"/>
-                </div>
-                <div>
-                <button type="submit" >Registration</button>
-                </div>
-            </form>
-           
+        </Form.Item>
+        
+        <Form.Item {...tailLayout}>
+          <Button htmlType="submit">Submit </Button>
+          </Form.Item>
+      </Form> 
             
         </Fragment>
     )   
 }
 
-export default Form
+
+export default Registration
