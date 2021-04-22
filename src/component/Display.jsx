@@ -74,9 +74,7 @@ const Display = ()=> {
     
     const [data,setData]=useState([]) ;
     useEffect(()=>{ 
-        fetch("http://localhost:8000/students")
-      .then((response) => response.json())
-      .then((data) => setData(data) );
+         getStudents(data, setData)
         },[]) 
         
     
